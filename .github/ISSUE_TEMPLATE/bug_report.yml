@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a reproducible integration problem
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Never paste app secrets, terminal IDs, box/device IDs, cookies, account
+        details, or raw traffic captures into a public issue.
+  - type: input
+    id: model
+    attributes:
+      label: SHARP model and region
+      placeholder: FP-S90T-W, Taiwan
+    validations:
+      required: true
+  - type: input
+    id: ha_version
+    attributes:
+      label: Home Assistant version
+    validations:
+      required: true
+  - type: input
+    id: integration_version
+    attributes:
+      label: Integration version
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem description
+      description: Describe what happened and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs
+      description: Remove every credential and device/account identifier first.
+      render: text

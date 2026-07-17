@@ -1,0 +1,12 @@
+{
+  "domain": "sharp_cocoro_air",
+  "name": "SHARP COCORO AIR (Taiwan)",
+  "codeowners": ["@gg50202gg"],
+  "config_flow": true,
+  "documentation": "https://github.com/gg50202gg/ha-sharp-cocoro-air",
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/gg50202gg/ha-sharp-cocoro-air/issues",
+  "requirements": [],
+  "version": "0.1.1"
+}

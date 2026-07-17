@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "連接 SHARP COCORO AIR",
+        "description": "輸入從台灣版 COCORO AIR 官方 App 擷取的識別資料。",
+        "data": {
+          "name": "裝置名稱",
+          "app_secret": "應用程式密鑰",
+          "terminal_app_id": "終端應用程式 ID",
+          "box_id": "Box ID",
+          "device_id": "裝置 ID",
+          "echonet_node": "ECHONET 節點",
+          "echonet_object": "ECHONET 物件",
+          "base_url": "雲端 API 網址",
+          "user_agent": "User-Agent"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "無法連接 SHARP COCORO AIR",
+      "invalid_auth": "擷取的憑證已遭拒絕",
+      "unknown": "COCORO AIR 回應格式不符預期"
+    },
+    "abort": {
+      "already_configured": "此空氣清淨機已設定完成"
+    }
+  },
+  "entity": {
+    "fan": {
+      "air_purifier": {
+        "name": "空氣清淨機",
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "auto": "自動",
+              "pollen": "花粉",
+              "sleep": "睡眠",
+              "feel": "舒適",
+              "quiet": "靜音",
+              "medium": "中",
+              "strong": "強"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "temperature": {"name": "溫度"},
+      "humidity": {"name": "濕度"},
+      "power": {"name": "功率"},
+      "energy": {"name": "累積耗電"}
+    }
+  }
+}

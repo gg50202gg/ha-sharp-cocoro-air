@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+dist/
+*.zip
+.idea/
+.vscode/
+
+# Never commit captured COCORO AIR credentials or traffic.
+session.json
+*.flows
+*.har
+*.pcap
+*.pcapng
+secrets.yaml

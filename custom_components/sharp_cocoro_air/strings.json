@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect SHARP COCORO AIR",
+        "description": "Enter the identifiers captured from the official Taiwan COCORO AIR app.",
+        "data": {
+          "name": "Device name",
+          "app_secret": "Application secret",
+          "terminal_app_id": "Terminal application ID",
+          "box_id": "Box ID",
+          "device_id": "Device ID",
+          "echonet_node": "ECHONET node",
+          "echonet_object": "ECHONET object",
+          "base_url": "Cloud API URL",
+          "user_agent": "User agent"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to SHARP COCORO AIR",
+      "invalid_auth": "The captured credentials were rejected",
+      "unknown": "Unexpected COCORO AIR response"
+    },
+    "abort": {
+      "already_configured": "This purifier is already configured"
+    }
+  },
+  "entity": {
+    "fan": {
+      "air_purifier": {
+        "name": "Air purifier",
+        "state_attributes": {
+          "preset_mode": {
+            "state": {
+              "auto": "Auto",
+              "pollen": "Pollen",
+              "sleep": "Sleep",
+              "feel": "Comfort",
+              "quiet": "Quiet",
+              "medium": "Medium",
+              "strong": "Strong"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "temperature": {"name": "Temperature"},
+      "humidity": {"name": "Humidity"},
+      "power": {"name": "Power"},
+      "energy": {"name": "Energy"}
+    }
+  }
+}
