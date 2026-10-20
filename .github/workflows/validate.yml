@@ -23,6 +23,8 @@ jobs:
   hassfest:
     name: Hassfest
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -32,6 +34,8 @@ jobs:
   unit-tests:
     name: Unit tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
