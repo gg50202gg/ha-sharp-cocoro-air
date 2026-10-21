@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from typing import Any
 
 from homeassistant.components.fan import FanEntity, FanEntityFeature
@@ -48,13 +49,14 @@ class CocoroAirFan(CocoroAirEntity, FanEntity):
 
     async def async_turn_on(
         self,
-        *,
         percentage: int | None = None,
         preset_mode: str | None = None,
         **kwargs: Any,
     ) -> None:
         if not self.is_on:
             await self.coordinator.api.async_set_power(True)
+            # The purifier needs five seconds before it accepts mode commands.
+            await asyncio.sleep(5)
         if preset_mode is not None:
             await self.async_set_preset_mode(preset_mode)
         else:
