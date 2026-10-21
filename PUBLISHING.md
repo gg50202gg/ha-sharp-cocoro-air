@@ -33,13 +33,13 @@ The repository files are prepared for `gg50202gg/ha-sharp-cocoro-air`.
 
 The repository must remain public for HACS custom repository installation.
 
-## Publish version 0.1.1
+## Publish version 0.1.4
 
 Wait for the Validate workflow to pass, then create and push a matching tag:
 
 ```bash
-git tag v0.1.1
-git push origin v0.1.1
+git tag v0.1.4
+git push origin v0.1.4
 ```
 
 The Release workflow verifies that the tag matches `manifest.json`, builds
