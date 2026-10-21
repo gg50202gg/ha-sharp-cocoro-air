@@ -147,6 +147,7 @@ class CocoroAirApi:
         params: Mapping[str, str] | None = None,
         json: Mapping[str, Any] | None = None,
         retry_auth: bool = True,
+        error_class: type[CocoroAirError] = CocoroAirError,
     ) -> Mapping[str, Any]:
         try:
             async with self._session.request(
@@ -168,33 +169,41 @@ class CocoroAirApi:
                         params=params,
                         json=json,
                         retry_auth=False,
+                        error_class=error_class,
                     )
                 if response.status in (401, 403):
                     raise CocoroAirAuthError("COCORO AIR rejected the credentials")
                 response.raise_for_status()
-                data = await response.json(content_type=None)
+                try:
+                    data = await response.json(content_type=None)
+                except ValueError:
+                    raise CocoroAirError(
+                        "COCORO AIR returned invalid JSON"
+                    ) from None
         except CocoroAirAuthError:
             raise
-        except (ClientError, TimeoutError) as err:
-            raise CocoroAirConnectionError(str(err)) from err
+        except (ClientError, TimeoutError):
+            # Transport exceptions can contain the URL and credential parameters.
+            raise CocoroAirConnectionError(
+                "Could not communicate with COCORO AIR"
+            ) from None
 
         if not isinstance(data, Mapping):
             raise CocoroAirError("COCORO AIR returned an unexpected response")
         if data.get("errorCode"):
-            raise CocoroAirError(f"COCORO AIR error: {data['errorCode']}")
+            raise error_class("COCORO AIR rejected the request")
         return data
 
     async def async_login(self) -> None:
         """Create a cloud session using the application's terminal identifier."""
-        data = await self._request(
+        await self._request(
             "POST",
             "setting/login/",
             params={"appSecret": self.config.app_secret, "serviceName": "sharp-tw2"},
             json={"terminalAppId": self.config.terminal_app_id},
             retry_auth=False,
+            error_class=CocoroAirAuthError,
         )
-        if data.get("errorCode"):
-            raise CocoroAirAuthError("COCORO AIR login failed")
 
     async def async_get_status(self) -> CocoroAirStatus:
         """Fetch and decode current purifier state."""
